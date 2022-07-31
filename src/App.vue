@@ -1,15 +1,24 @@
 <template>
-  <div>黑马头条</div>
+  <div>
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'App',
-  data () {
+  data() {
     return {}
   },
-  methods: {}
+  methods: {},
+  mounted() {}
 }
 </script>
 
-<style scoped></style>
+<style>
+button {
+  width: 300px;
+  height: 80px;
+  font-size: 60px;
+}
+</style>

@@ -1,27 +1,45 @@
-// import Vue from 'vue'
-// import VueRouter from 'vue-router'
-// import HomeView from '../views/HomeView.vue'
+import Vue from 'vue'
+import VueRouter from 'vue-router'
 
-// Vue.use(VueRouter)
+Vue.use(VueRouter)
+//如果子路由的path 没有 / 那么会把父亲path和儿子path拼接
+// 如果子路由的path有 /，不会拼接
+const routes = [
+  // {
+  //   path: '/',
+  //   redirect: '/login'
+  // },
+  {
+    path: '/login',
+    component: () => import('@/views/login')
+  },
+  {
+    path: '/',
+    component: () => import('@/views/layout'),
+    redirect: '/ ',
+    children: [
+      {
+        path: '/ ',
+        component: () => import('@/views/layout')
+      },
+      {
+        path: '/video',
+        component: () => import('@/views/video')
+      },
+      {
+        path: '/qa',
+        component: () => import('@/views/QA')
+      },
+      {
+        path: '/my',
+        component: () => import('@/views/My')
+      }
+    ]
+  }
+]
 
-// const routes = [
-//   {
-//     path: '/',
-//     name: 'home',
-//     component: HomeView
-//   },
-//   {
-//     path: '/about',
-//     name: 'about',
-//     // route level code-splitting
-//     // this generates a separate chunk (about.[hash].js) for this route
-//     // which is lazy-loaded when the route is visited.
-//     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-//   }
-// ]
+const router = new VueRouter({
+  routes
+})
 
-// const router = new VueRouter({
-//   routes
-// })
-
-// export default router
+export default router
