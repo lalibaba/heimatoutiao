@@ -80,12 +80,13 @@ export default {
         //  - 对象 const { name,age } = {name:'张三',age:18} 没有命名权
         //  - 对象的连续解构赋值 : 一层层的来const { friend:{ name } } = {name:'张三',friend:{ name:'李四' }}
         //  - 对象结构赋值当中的命名 const { friend:{ name:person } } = {name:'张三',friend:{ name:'李四' }}
-        console.log(res)
+
+        // console.log(res)
         const {
           data: { data: token }
         } = res //解构token
         this.$store.commit('TOKEN', token)
-        this.$router.push('./profile')
+        this.$router.push('./my')
       } catch (e) {
         console.log(e)
         let message = '请重新登录'
