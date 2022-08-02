@@ -1,6 +1,10 @@
 <template>
   <div>
     <router-view></router-view>
+    <!-- <div v-for="(item, index) in obj" :key="index">
+      {{ item }}
+      <p v-for="(item, index) in item" :key="index">{{ item }}</p>
+    </div> -->
   </div>
 </template>
 
@@ -8,7 +12,9 @@
 export default {
   name: 'App',
   data() {
-    return {}
+    return {
+      // obj: { 'a': [1, 2, 3], b: [1, 2, 3], c: [1, 2, 3], d: [1, 2, 3] }
+    }
   },
   methods: {},
   mounted() {}

@@ -20,7 +20,7 @@ const routes = [
     children: [
       {
         path: '/ ',
-        component: () => import('@/views/layout')
+        component: () => import('@/views/Home')
       },
       {
         path: '/video',
