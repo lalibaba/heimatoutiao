@@ -9,6 +9,7 @@
         class="search"
         @search="onSearch"
         @focus="onSearchFocus"
+        @cancel="$router.push('/')"
       />
       <component :is="componentName" :keywords="keywords"></component>
     </form>
