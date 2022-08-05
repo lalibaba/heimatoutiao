@@ -1,10 +1,9 @@
 <template>
-  <div>video</div>
+  <div>搜索历史</div>
 </template>
 
 <script>
 export default {
-  name: 'Video',
   data() {
     return {}
   },

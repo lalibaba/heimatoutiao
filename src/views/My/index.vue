@@ -72,7 +72,7 @@
 
 <script>
 export default {
-  name: 'App',
+  name: 'My',
   data() {
     return {}
   },
