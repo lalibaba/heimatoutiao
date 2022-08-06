@@ -2,43 +2,47 @@
   <div class="my">
     <!-- 头部 -->
     <header class="head">
-      <div v-if="isLogin" class="login">
+      <div v-if="isLogin" class="login" style="width: 100%">
         <div class="login1">
-          <van-image
+          <van-image round width="56px" height="56px" :src="userInfo.photo" />
+          <p style="font-size: 0.5rem; color: #fff">{{ userInfo.name }}</p>
+          <van-button
             round
-            width="56px"
-            height="56px"
-            src="http://toutiao.itheima.net/images/user_head.jpg"
-          />
-          <p style="font-size: 0.5rem; color: #fff">1827016431</p>
-          <van-button round type="info" size="mini">编辑资料</van-button>
+            type="info"
+            size="mini"
+            @click="$router.push('/profile')"
+            >编辑资料</van-button
+          >
         </div>
-        <van-grid>
-          <van-grid-item
-            ><template #text>
+        <div class="fans">
+          <ul
+            style="
+              display: flex;
+              justify-content: space-evenly;
+              height: 50px;
+              font-size: 16px;
+              color: #fff;
+              margin-top: 60px;
+            "
+          >
+            <li>
               <p>文字</p>
               <p>文字</p>
-            </template>
-          </van-grid-item>
-          <van-grid-item
-            ><template #text>
+            </li>
+            <li>
               <p>文字</p>
               <p>文字</p>
-            </template>
-          </van-grid-item>
-          <van-grid-item
-            ><template #text>
+            </li>
+            <li>
               <p>文字</p>
               <p>文字</p>
-            </template>
-          </van-grid-item>
-          <van-grid-item
-            ><template #text>
+            </li>
+            <li>
               <p>文字</p>
               <p>文字</p>
-            </template>
-          </van-grid-item>
-        </van-grid>
+            </li>
+          </ul>
+        </div>
       </div>
 
       <div v-else class="logout" @click="$router.push('/login')">
@@ -71,17 +75,29 @@
 </template>
 
 <script>
+import { getUserInfoAPI } from '@/api'
 export default {
   name: 'My',
   data() {
-    return {}
+    return {
+      userInfo: {}
+    }
   },
   computed: {
     isLogin() {
       return !!this.$store.state.tokenObj.token
     }
   },
+  created() {
+    this.getUserInfo()
+  },
   methods: {
+    //获取用户信息
+    async getUserInfo() {
+      const res = await getUserInfoAPI()
+      this.userInfo = res.data.data
+      // console.log(res.data.data)
+    },
     logout() {
       this.$store.commit('TOKEN', {})
     }
@@ -130,6 +146,11 @@ export default {
       color: #fff;
       width: 86px;
       height: 48px;
+    }
+  }
+  li {
+    p {
+      margin: 0;
     }
   }
 }
