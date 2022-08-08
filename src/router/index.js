@@ -11,36 +11,68 @@ const routes = [
   // },
   {
     path: '/login',
-    component: () => import('@/views/login')
+    component: () => import('@/views/login'),
+    meta: {
+      index: 2
+    }
+  },
+  //获取文章信息
+  {
+    path: '/detail/:id',
+    component: () => import('@/views/articleInfo'),
+    meta: {
+      index: 2
+    }
   },
   {
     path: '/search',
-    component: () => import('@/views/Search')
+    component: () => import('@/views/Search'),
+    meta: {
+      index: 2
+    }
   },
   {
     path: '/profile',
-    component: () => import('@/views/User')
+    component: () => import('@/views/User'),
+    meta: {
+      index: 2
+    }
   },
   {
     path: '/',
     component: () => import('@/views/layout'),
     redirect: '/ ',
+    meta: {
+      index: 0
+    },
     children: [
       {
         path: '/ ',
-        component: () => import('@/views/Home')
+        component: () => import('@/views/Home'),
+        meta: {
+          index: 1
+        }
       },
       {
         path: '/video',
-        component: () => import('@/views/video')
+        component: () => import('@/views/video'),
+        meta: {
+          index: 1
+        }
       },
       {
         path: '/qa',
-        component: () => import('@/views/QA')
+        component: () => import('@/views/QA'),
+        meta: {
+          index: 1
+        }
       },
       {
         path: '/my',
-        component: () => import('@/views/My')
+        component: () => import('@/views/My'),
+        meta: {
+          index: 1
+        }
       }
     ]
   }

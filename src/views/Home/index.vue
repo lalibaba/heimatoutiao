@@ -105,7 +105,9 @@ export default {
       try {
         const res = await getMyChannelAPI()
         this.myChannels = res.data.data.channels
-        this.$toast.success('获取成功')
+        // this.$toast.resetDefaultOptions({ duration: 1000 })
+        // console.dir(this.$toast.success)
+        // this.$toast.success('获取成功')
       } catch (e) {
         console.log(e)
         this.$toast.fail('获取频道失败，请刷新')

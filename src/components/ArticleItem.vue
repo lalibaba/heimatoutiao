@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @click="changePage">
     <van-cell
       v-if="articleIfon.cover.type === 0"
       :title="articleIfon.title"
@@ -51,7 +51,13 @@ export default {
   data() {
     return {}
   },
-  methods: {}
+  methods: {
+    //切换路由以及传id
+    changePage() {
+      this.$router.push('/detail/' + this.articleIfon.art_id)
+      // console.log(this.articleIfon)
+    }
+  }
 }
 </script>
 

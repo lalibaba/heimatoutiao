@@ -27,7 +27,7 @@
       ><AvatorUppop
         v-if="isShowAvator"
         :photo="photo"
-        @updateImg="userInfo.photo = '$event'"
+        @updateImg="userInfo.photo = $event"
       ></AvatorUppop
     ></van-popup>
 

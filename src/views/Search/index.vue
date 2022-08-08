@@ -8,9 +8,14 @@
         placeholder="请输入搜索关键词"
         class="search"
         @search="onSearch"
+        @cancel="$router.back()"
         @focus="onSearchFocus"
       />
-      <component :is="componentName" :keywords="keywords"></component>
+      <component
+        :is="componentName"
+        :keywords="keywords"
+        @searchThis="searchThis"
+      ></component>
     </form>
   </div>
 </template>
@@ -28,12 +33,24 @@ export default {
     }
   },
   methods: {
+    // 搜索按键
     onSearch() {
-      console.log('正在搜索')
       this.isHShowSearchResults = true
+      //获取搜索历史
+      const kwHistory = this.$store.state.KWHistory
+      //判断是否有重，有则删除再unshift
+      const repeatIndex = kwHistory.findIndex((item) => item === this.keywords)
+      if (repeatIndex !== -1) kwHistory.splice(repeatIndex, 1)
+      this.keywords && kwHistory.unshift(this.keywords)
+      this.$store.commit('KWHistory', kwHistory)
     },
     onSearchFocus() {
       this.isHShowSearchResults = false
+    },
+    // 搜索点击的历史记录
+    searchThis(val) {
+      this.keywords = val
+      this.isHShowSearchResults = true
     }
   },
   components: {

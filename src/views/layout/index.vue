@@ -8,6 +8,8 @@
         v-for="(item, index) in tabbarList"
         :key="index"
         :to="item.to"
+        animated
+        swipeable
       >
         <template #icon>
           <span :class="'toutiao' + item.icon"> </span>

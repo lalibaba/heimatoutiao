@@ -33,7 +33,7 @@ export default {
         this.myCropper.getCroppedCanvas().toBlob(async (blob) => {
           // blon是一个文件对象，在请求中已经将其处理为表单后传输
           const res = await uploadAvator(blob)
-          //解决请求后头像未更新bug
+          //解决请求后头像未更新<bug></bug>
           // console.log(res.data.data.photo)
           this.$emit('updateImg', res.data.data.photo)
         })

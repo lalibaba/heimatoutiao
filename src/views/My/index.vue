@@ -5,7 +5,9 @@
       <div v-if="isLogin" class="login" style="width: 100%">
         <div class="login1">
           <van-image round width="56px" height="56px" :src="userInfo.photo" />
-          <p style="font-size: 0.5rem; color: #fff">{{ userInfo.name }}</p>
+          <p style="font-size: 0.5rem; color: #fff; padding-right: 80px">
+            {{ userInfo.name }}
+          </p>
           <van-button
             round
             type="info"
@@ -23,23 +25,24 @@
               font-size: 16px;
               color: #fff;
               margin-top: 60px;
+              text-align: center;
             "
           >
             <li>
-              <p>文字</p>
-              <p>文字</p>
+              <p>头条</p>
+              <p>0</p>
             </li>
             <li>
-              <p>文字</p>
-              <p>文字</p>
+              <p>粉丝</p>
+              <p>0</p>
             </li>
             <li>
-              <p>文字</p>
-              <p>文字</p>
+              <p>关注</p>
+              <p>0</p>
             </li>
             <li>
-              <p>文字</p>
-              <p>文字</p>
+              <p>获赞</p>
+              <p>0</p>
             </li>
           </ul>
         </div>
@@ -69,7 +72,9 @@
     </van-nav-bar>
     <!-- 底部 -->
     <footer>
-      <van-button v-if="isLogin" @click="logout">退出</van-button>
+      <van-button v-if="isLogin" @click="logout" block style="color: red"
+        >退出</van-button
+      >
     </footer>
   </div>
 </template>
