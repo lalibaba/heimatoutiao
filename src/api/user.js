@@ -39,3 +39,18 @@ export const editUserInfoAPI = (data) =>
     method: 'PATCH',
     data
   })
+//关注用户
+export const followingsAPI = (target) =>
+  request({
+    url: '/v1_0/user/followings',
+    method: 'POST',
+    data: {
+      target
+    }
+  })
+//取消关注用户
+export const canFollowingsAPI = (target) =>
+  request({
+    url: '/v1_0/user/followings/' + target,
+    method: 'DELETE'
+  })
