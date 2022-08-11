@@ -4,7 +4,7 @@
     <van-nav-bar
       :title="reply_count + '条回复'"
       left-arrow
-      @click-left="$parent.$parent.reply2Show = false"
+      @click-left="$parent.$parent.replyShow2 = false"
       style="z-index: 9999"
     />
     <!-- 当前回复的评论 -->
@@ -49,17 +49,12 @@
         >
       </div>
     </van-popup>
-    <!-- 评论的评论 -->
-    <van-popup position="bottom" v-model="replyShow2" :style="{ height: '80%' }"
-      ><addcommentcopy :commentItem="thisComment"></addcommentcopy
-    ></van-popup>
   </div>
 </template>
 
 <script>
 import CommentItem from './commentItem.vue'
 import CommentList from './commentList.vue'
-import addcommentcopy from './addcommentcopy.vue'
 import { addCommentsAPI } from '@/api'
 export default {
   name: 'AddComment',
@@ -67,24 +62,15 @@ export default {
     return {
       myComment: [],
       replyShow: false,
-      replyShow2: false,
       message: '',
-      thisComment: {},
       reply_count: this.commentItem.reply_count //页面评论数
     }
   },
   components: {
     CommentItem,
-    CommentList,
-    addcommentcopy
+    CommentList
   },
   methods: {
-    //添加弹窗/第二次
-    addComFn(id) {
-      this.thisComment = id
-      this.replyShow2 = true
-      console.log(id.com_id)
-    },
     //添加评论
     async addComment() {
       // console.log(this.commentItem)

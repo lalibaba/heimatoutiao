@@ -59,7 +59,8 @@
       <CommentList
         @addComFn="addComFn"
         :myComment="myComment"
-        :id="articleInfo.art_id"
+        :id="articleInfo.art_id || ''"
+        :type="'a'"
       ></CommentList>
     </div>
 

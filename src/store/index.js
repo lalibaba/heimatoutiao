@@ -14,7 +14,7 @@ export default new Vuex.Store({
   getters: {},
   mutations: {
     //保存token
-    TOKEN(state, Payload) {
+    setUser(state, Payload) {
       state.tokenObj = Payload //存入vuex仓库,确保页面token数据是同步的
       setToken(Payload)
     },

@@ -4,9 +4,9 @@
     <header class="head">
       <div v-if="isLogin" class="login" style="width: 100%">
         <div class="login1">
-          <van-image round width="56px" height="56px" :src="userInfo.photo" />
+          <van-image round width="56px" height="56px" :src="selfInfo.photo" />
           <p style="font-size: 0.5rem; color: #fff; padding-right: 80px">
-            {{ userInfo.name }}
+            {{ selfInfo.name }}
           </p>
           <van-button
             round
@@ -30,19 +30,19 @@
           >
             <li>
               <p>头条</p>
-              <p>0</p>
+              <p>{{ this.selfInfo.art_count }}</p>
             </li>
             <li>
               <p>粉丝</p>
-              <p>0</p>
+              <p>{{ this.selfInfo.fans_count }}</p>
             </li>
             <li>
               <p>关注</p>
-              <p>0</p>
+              <p>{{ this.selfInfo.follow_count }}</p>
             </li>
             <li>
               <p>获赞</p>
-              <p>0</p>
+              <p>{{ this.selfInfo.like_count }}</p>
             </li>
           </ul>
         </div>
@@ -80,12 +80,13 @@
 </template>
 
 <script>
-import { getUserInfoAPI } from '@/api'
+import { getSelfInfoAPI } from '@/api'
 export default {
   name: 'My',
   data() {
     return {
-      userInfo: {}
+      // userInfo: {},
+      selfInfo: {}
     }
   },
   computed: {
@@ -94,17 +95,22 @@ export default {
     }
   },
   created() {
-    this.getUserInfo()
+    this.getInfo()
   },
   methods: {
     //获取用户信息
-    async getUserInfo() {
-      const res = await getUserInfoAPI()
-      this.userInfo = res.data.data
-      // console.log(res.data.data)
+    async getInfo() {
+      //获取自己的信息
+      const res1 = await getSelfInfoAPI()
+      this.selfInfo = res1.data.data
+      console.log(res1)
+      // //获取个人资料
+      // const res2 = await getUserInfoAPI()
+      // this.userInfo = res2.data.data
+      // // console.log(res.data.data)
     },
     logout() {
-      this.$store.commit('TOKEN', {})
+      this.$store.commit('setUser', {})
     }
   }
 }

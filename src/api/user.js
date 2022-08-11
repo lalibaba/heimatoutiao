@@ -21,6 +21,12 @@ export const getUserInfoAPI = () =>
   request({
     url: '/v1_0/user/profile'
   })
+//获取用户自己信息
+export const getSelfInfoAPI = () =>
+  request({
+    url: '/v1_0/user'
+  })
+
 // 上传图片请求
 export const uploadAvator = (file) => {
   const fm = new FormData() //上传的是表单数据

@@ -9,7 +9,7 @@
     >
       <!-- 单个评论 -->
       <comment-item
-        @addComFn="addComFn"
+        @addComFn="$emit('addComFn', $event)"
         v-for="(item, index) in commentsList"
         :key="index"
         :commentsItem="item"
@@ -36,22 +36,22 @@ export default {
     CommentItem
   },
   methods: {
-    //评论弹窗
-    addComFn(id) {
-      this.$emit('addComFn', id)
-    },
+    // //评论弹窗
+    // addComFn(id) {
+    //   this.$emit('addComFn', id)
+    // },
     //获取文章评论列表
     async loadNextPage() {
       try {
         if (this.lastId === '') {
-          const res = await commentsAPI('a', this.id, null, 5)
+          const res = await commentsAPI(this.type, this.id, null, 5)
           this.commentsList.push(...res.data.data.results)
           this.lastId = res.data.data.last_id
         }
         if (this.lastId === null) {
           return (this.finished = true)
         }
-        const res = await commentsAPI('a', this.id, this.lastId, 5)
+        const res = await commentsAPI(this.type, this.id, this.lastId, 5)
         this.lastId = res.data.data.last_id
         this.commentsList.push(...res.data.data.results)
         this.loading = false
@@ -63,12 +63,16 @@ export default {
   },
   props: {
     id: {
-      type: String,
+      type: [String, Number],
       required: true
     },
     myComment: {
       type: Array,
       default: () => []
+    },
+    type: {
+      type: [String, Number],
+      required: true
     }
   },
   watch: {
@@ -79,7 +83,7 @@ export default {
     }
   },
   mounted() {
-    this.loadNextPage()
+    console.log(this.id)
   }
 }
 </script>

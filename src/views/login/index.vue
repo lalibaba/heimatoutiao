@@ -83,9 +83,10 @@ export default {
 
         // console.log(res)
         const {
-          data: { data: token }
+          data: { data: tokenObj }
         } = res //解构token
-        this.$store.commit('TOKEN', token)
+        console.log(tokenObj)
+        this.$store.commit('setUser', tokenObj)
         this.$router.push('./my')
       } catch (e) {
         console.log(e)
